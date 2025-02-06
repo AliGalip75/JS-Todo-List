@@ -33,6 +33,9 @@ body {
     max-width: 750px; /* Maksimum genişlik */
 }
 
+#main{
+  min-height: 720px;
+}
 
 #main > h1 {
     font-family: Montserrat;

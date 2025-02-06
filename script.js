@@ -1,12 +1,16 @@
 const addButton = document.querySelector("#addButton");
 const addInput = document.querySelector("#addInput");
 const todoList = document.querySelector("#todoList");
+const customContainer = document.querySelector(".custom-container");
+const deleteAll = customContainer.querySelector("#deleteButton");
 let todos = [];
 runEvents();
 
 function runEvents(){
     addButton.addEventListener("click", addTodo);
     document.addEventListener("DOMContentLoaded", pageLoaded);
+    deleteButton.addEventListener("click", deleteAllTodos);
+
     addInput.addEventListener("keydown", function(e){
         if(e.key === "Enter"){
             e.preventDefault;
@@ -28,6 +32,19 @@ function pageLoaded(){ //sayfa yüklendiğinde local'den verileri çek
         todos.forEach(function(todo){
             addTodoToUI(todo); // Her todo'yu UI'ye ekle
         });
+    }
+}
+
+function deleteAllTodos(){
+    try {
+        while (todoList.firstChild) {
+            todoList.removeChild(todoList.firstChild);
+        }
+        showAlert("No todos yet! Add a new todo to get started.");
+        todos = [];
+        localStorage.setItem("todo", JSON.stringify(todos));
+    } catch (error) {
+        console.log(error.message);
     }
 }
 
